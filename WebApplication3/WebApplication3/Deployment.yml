@@ -1,0 +1,68 @@
+﻿apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webpplication3-deployment
+  labels:
+    app: webapplication3
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: webapplication3  
+  template:
+    metadata:
+      labels:
+        app: webapplication3
+    spec:
+      containers:
+      - name: webapplication3
+        image: <image>
+        ports:
+        - containerPort: 8080
+      imagePullSecrets:
+      - name: acrcredentials
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: webapplication3svc
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+  selector:
+    app: webapplication3apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webpplication3-deployment
+  labels:
+    app: webapplication3
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: webapplication3  
+  template:
+    metadata:
+      labels:
+        app: webapplication3
+    spec:
+      containers:
+      - name: webapplication3
+        image: <image>
+        ports:
+        - containerPort: 8080
+      imagePullSecrets:
+      - name: acrcredentials
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: webapplication3svc
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+  selector:
+    app: webapplication3
+
